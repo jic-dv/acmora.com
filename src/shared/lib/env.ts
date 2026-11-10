@@ -18,9 +18,16 @@ const schema = z.object({
 const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || vercelProduction;
 
+/**
+ * Indexacion. Un "true" o "false" explicito en NEXT_PUBLIC_INDEXING_ENABLED manda. Sin la variable: en Vercel se indexa solo el
+ * despliegue de produccion (VERCEL_ENV=production) y las vistas previas quedan con noindex, para que Google no vea contenido
+ * duplicado; fuera de Vercel (local, pruebas), noindex.
+ */
+const indexing = process.env.NEXT_PUBLIC_INDEXING_ENABLED || (process.env.VERCEL_ENV === "production" ? "true" : "false");
+
 const parsed = schema.safeParse({
   NEXT_PUBLIC_SITE_URL: siteUrl,
-  NEXT_PUBLIC_INDEXING_ENABLED: process.env.NEXT_PUBLIC_INDEXING_ENABLED,
+  NEXT_PUBLIC_INDEXING_ENABLED: indexing,
 });
 if (!parsed.success) {
   throw new Error(`Variables de entorno publicas invalidas: ${z.prettifyError(parsed.error)}`);
