@@ -9,15 +9,24 @@ const schema = z.object({
   NEXT_PUBLIC_INDEXING_ENABLED: z.enum(["true", "false"]).default("false"),
 });
 
+/**
+ * URL publica y canonica. Manda NEXT_PUBLIC_SITE_URL (el dominio propio, configurado en el proyecto). Si falta y el sitio se
+ * compila en Vercel, se usa el dominio de produccion que Vercel entrega en sus variables de sistema
+ * (VERCEL_PROJECT_PRODUCTION_URL, disponible al compilar y al ejecutar, sin protocolo): asi el build nunca cae por esto y el
+ * canonical apunta siempre a produccion, tambien en las vistas previas.
+ */
+const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || vercelProduction;
+
 const parsed = schema.safeParse({
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  NEXT_PUBLIC_SITE_URL: siteUrl,
   NEXT_PUBLIC_INDEXING_ENABLED: process.env.NEXT_PUBLIC_INDEXING_ENABLED,
 });
 if (!parsed.success) {
   throw new Error(`Variables de entorno publicas invalidas: ${z.prettifyError(parsed.error)}`);
 }
-if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_SITE_URL) {
-  throw new Error("NEXT_PUBLIC_SITE_URL es obligatoria en produccion (canonical, sitemap y OG dependen de ella).");
+if (process.env.NODE_ENV === "production" && !siteUrl) {
+  throw new Error("NEXT_PUBLIC_SITE_URL es obligatoria en produccion (canonical, sitemap y OG dependen de ella). Fuera de Vercel no hay respaldo: definela.");
 }
 
 export const env = { ...parsed.data, indexable: parsed.data.NEXT_PUBLIC_INDEXING_ENABLED === "true" };
