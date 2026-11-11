@@ -1,17 +1,17 @@
 import { z } from "@/shared/lib/z";
 import { routing } from "@/i18n/routing";
-import { COUNTRY_CODES, SERVICE_OPTIONS } from "../state";
+import { COUNTRY_CODES, LIMITS, SERVICE_OPTIONS } from "../state";
 
 /** Fuente de verdad del formulario: la usan el servidor (validacion) y el cliente (tipos de estado). */
 export const contactSchema = z
   .object({
-    name: z.string().trim().min(2).max(100),
+    name: z.string().trim().min(LIMITS.nameMin).max(LIMITS.nameMax),
     email: z.email().max(160),
     phoneCountry: z.enum(COUNTRY_CODES as [string, ...string[]]),
     // Opcional. Solo digitos, sin el prefijo del pais.
-    phone: z.string().trim().regex(/^\d*$/).max(12).optional(),
+    phone: z.string().trim().regex(/^\d*$/).max(LIMITS.phoneMax).optional(),
     service: z.enum(SERVICE_OPTIONS),
-    message: z.string().trim().max(500).optional(),
+    message: z.string().trim().max(LIMITS.messageMax).optional(),
     // Un checkbox marcado llega como "on". Sin marcar, el campo no llega.
     consent: z.literal("on"),
     locale: z.enum(routing.locales),

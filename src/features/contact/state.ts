@@ -1,5 +1,8 @@
 export const SERVICE_OPTIONS = ["landing", "multipagina", "crm", "mantencion", "otro"] as const;
 
+/** Limites de los campos, iguales en el dialogo de cotizacion, el formulario de contacto y la validacion del servidor. */
+export const LIMITS = { nameMin: 2, nameMax: 60, messageMin: 10, messageMax: 500, phoneMax: 12 } as const;
+
 /**
  * Prefijos telefonicos del selector, de mayor a menor cercania: Chile, Latinoamerica y los paises con mas contacto
  * comercial. Cada codigo es unico (el +1 agrupa Estados Unidos y Canada). `iso` enlaza con la bandera del selector.

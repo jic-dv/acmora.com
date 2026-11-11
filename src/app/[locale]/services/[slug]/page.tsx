@@ -11,6 +11,7 @@ import { breadcrumbNode, graph, webPageNode } from "@/shared/lib/jsonld";
 import { planAmount } from "@/shared/lib/money";
 import { absoluteUrl, buildMetadata, pathFor } from "@/shared/lib/seo";
 import { SITE_REVISION } from "@/shared/constants/site";
+import { keywordsFor, SERVICE_KEYWORDS } from "@/shared/constants/keywords";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ref: { pathname: "/services/[slug]", slug },
     title: service.meta.title[locale],
     description: service.meta.description[locale],
+    keywords: keywordsFor(locale, SERVICE_KEYWORDS[slug] ?? "general"),
   });
 }
 
@@ -60,7 +62,9 @@ export default async function ServicePage({ params }: Props) {
       description: service.summary[locale],
       inLanguage: HTML_LANG[locale],
       provider: { "@id": orgId },
-      areaServed: "CL",
+      serviceType: service.name[locale],
+      category: locale === "es" ? "Desarrollo de software" : "Software development",
+      keywords: keywordsFor(locale, SERVICE_KEYWORDS[slug] ?? "general").join(", "),
       ...(offers.length ? { offers } : {}),
     },
     breadcrumbNode([

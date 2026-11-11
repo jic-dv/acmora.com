@@ -31,15 +31,19 @@ type Input = {
   type?: "website" | "article";
   /** Fuerza noindex en la ruta (por ejemplo, filtros combinatorios). */
   noindex?: boolean;
+  /** Palabras clave de la pagina (shared/constants/keywords.ts). */
+  keywords?: string[];
 };
 
-export function buildMetadata({ locale, ref, title, description, type = "website", noindex }: Input): Metadata {
+export function buildMetadata({ locale, ref, title, description, type = "website", noindex, keywords }: Input): Metadata {
   const url = absoluteUrl(pathFor(locale, ref));
   const other = routing.locales.filter((l) => l !== locale);
   const index = env.indexable && !noindex;
   return {
     title: { absolute: title },
     description,
+    ...(keywords?.length ? { keywords } : {}),
+    category: locale === "es" ? "Desarrollo de software" : "Software development",
     applicationName: COMPANY.name,
     authors: [{ name: COMPANY.name }],
     publisher: COMPANY.name,

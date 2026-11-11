@@ -1,16 +1,16 @@
 import { z } from "@/shared/lib/z";
 import { routing } from "@/i18n/routing";
-import { COUNTRY_CODES, SERVICE_OPTIONS } from "../state";
+import { COUNTRY_CODES, LIMITS, SERVICE_OPTIONS } from "../state";
 
 /** Dialogo de cotizacion: nombre o empresa, telefono, servicio y proyecto, todos obligatorios. */
 export const quoteSchema = z
   .object({
-    name: z.string().trim().min(2).max(100),
+    name: z.string().trim().min(LIMITS.nameMin).max(LIMITS.nameMax),
     phoneCountry: z.enum(COUNTRY_CODES as [string, ...string[]]),
     // Solo digitos, sin el prefijo del pais.
-    phone: z.string().trim().regex(/^\d+$/).max(12),
+    phone: z.string().trim().regex(/^\d+$/).max(LIMITS.phoneMax),
     service: z.enum(SERVICE_OPTIONS),
-    message: z.string().trim().min(10).max(500),
+    message: z.string().trim().min(LIMITS.messageMin).max(LIMITS.messageMax),
     // Aceptacion expresa de terminos y politica de privacidad (Ley 21.719): sin ella no se procesa la solicitud.
     consent: z.literal(true),
     // Plan desde el que se abrio el dialogo (informativo, no determina precio).

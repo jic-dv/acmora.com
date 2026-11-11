@@ -97,9 +97,34 @@ test.describe("SEO tecnico", () => {
     expect(robots).toContain("Sitemap:");
     const raw = await request.get("/raw/en/pricing.md");
     expect(raw.headers()["content-type"]).toContain("text/markdown");
-    expect(await raw.text()).toContain("# Clear pricing, no fine print");
+    expect(await raw.text()).toContain("# Website, landing page and CRM pricing");
     expect((await request.get("/raw/es/services/landing-page.md")).status()).toBe(200);
     expect((await request.get("/raw/en/nope.md")).status()).toBe(404);
+  });
+
+  test("buscadores e IA: robots permite sus bots y el head declara palabras clave y datos estructurados", async ({ page, request }) => {
+    const robots = await (await request.get("/robots.txt")).text();
+    for (const bot of ["Googlebot", "Bingbot", "GPTBot", "OAI-SearchBot", "ClaudeBot", "PerplexityBot"]) expect(robots, bot).toContain(`User-Agent: ${bot}`);
+    expect(robots).toContain("Disallow: /api/");
+
+    const ld = async () =>
+      (await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap((t) => {
+        const j = JSON.parse(t) as { "@graph"?: unknown[] };
+        return (j["@graph"] ?? [j]) as Record<string, unknown>[];
+      });
+
+    await page.goto("/es", { waitUntil: "domcontentloaded" });
+    expect(await page.locator('meta[name="keywords"]').getAttribute("content")).toMatch(/agencia de desarrollo de software/);
+    const org = (await ld()).find((n) => n["@type"] === "ProfessionalService");
+    expect(org?.knowsAbout).toEqual(expect.arrayContaining(["desarrollo de software a medida"]));
+
+    await page.goto("/es/preguntas-frecuentes", { waitUntil: "domcontentloaded" });
+    const faq = (await ld()).find((n) => n["@type"] === "FAQPage") as { mainEntity?: unknown[] } | undefined;
+    expect(faq?.mainEntity?.length ?? 0).toBeGreaterThan(5);
+
+    await page.goto("/es/servicios/crm-personalizado", { waitUntil: "domcontentloaded" });
+    expect(await page.locator('meta[name="keywords"]').getAttribute("content")).toMatch(/CRM personalizado/);
+    expect((await ld()).find((n) => n["@type"] === "Service")?.serviceType).toBeTruthy();
   });
 });
 
@@ -998,11 +1023,11 @@ test.describe("secciones del inicio estilo Firebase", () => {
 
   test("la seccion de tecnologia muestra dos tarjetas sobre un panel degradado y una fila con las demas ventajas", async ({ page }) => {
     await page.goto("/es");
-    const section = page.getByRole("region", { name: "Lo que gana tu negocio" });
-    await expect(section.getByText("No pierdes visitas por lentitud", { exact: true })).toBeVisible();
-    await expect(section.getByText("Te encuentran en Google", { exact: true })).toBeVisible();
+    const section = page.getByRole("region", { name: "Beneficios de trabajar con Acmora" });
+    await expect(section.getByText("Carga rápida", { exact: true })).toBeVisible();
+    await expect(section.getByText("Optimizado para Google", { exact: true })).toBeVisible();
     await expect(section.getByRole("heading", { name: "Lo que incluye cada proyecto" })).toBeVisible();
-    for (const t of ["Te ves serio en cualquier pantalla", "Sin sustos de seguridad", "Pensado para que te escriban", "Hablas con quien lo hizo"]) await expect(section.getByText(t, { exact: true })).toBeVisible();
+    for (const t of ["Diseño adaptable", "Seguridad y respaldos", "Orientado a contactos", "Atención directa"]) await expect(section.getByText(t, { exact: true })).toBeVisible();
     await expect(section.getByRole("link", { name: "Ver servicios" })).toHaveAttribute("href", "/es/servicios");
   });
 
@@ -1030,7 +1055,7 @@ test.describe("secciones del inicio estilo Firebase", () => {
 
   test("el texto plano del inicio conserva los servicios, las ventajas y los pasos", async ({ request }) => {
     const md = await (await request.get("/raw/es/index.md")).text();
-    for (const t of ["Landing Page", "CRM Personalizado", "No pierdes visitas por lentitud", "Hablas con quien lo hizo", "Conversamos", "Lanzamos"]) expect(md).toContain(t);
+    for (const t of ["Landing Page", "CRM Personalizado", "Carga rápida", "Atención directa", "Conversamos", "Lanzamos"]) expect(md).toContain(t);
   });
 });
 
@@ -2228,7 +2253,7 @@ test.describe("home con la A de la marca y encabezado de precios amigable", () =
     await expect(crumbs).toContainText("Inicio");
     await expect(crumbs).toContainText("Precios");
     await expect(crumbs).not.toContainText("acmora");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Precios claros, sin letra chica");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Precios de páginas web, landing pages y CRM");
     await expect(page.getByRole("link", { name: "Ver planes y precios" })).toHaveAttribute("href", "#h-precios-por-servicio");
     await expect(page.getByRole("link", { name: "Cotizar gratis" }).first()).toBeVisible();
     await page.getByRole("link", { name: "Ver planes y precios" }).click();
@@ -2883,8 +2908,8 @@ test.describe("oferta irresistible: promesa, resultado medible, precio, garantia
     await page.goto("/es/servicios/landing-page", { waitUntil: "networkidle" });
     const h2 = await page.locator("main h2").allTextContents();
     const at = (t: string) => h2.findIndex((x) => x.trim() === t);
-    expect(at("Cómo sabrás que funcionó")).toBeGreaterThan(-1);
-    expect(at("Cómo sabrás que funcionó")).toBeLessThan(at("Planes"));
+    expect(at("Resultados medibles en cada entrega")).toBeGreaterThan(-1);
+    expect(at("Resultados medibles en cada entrega")).toBeLessThan(at("Planes"));
     expect(at("Planes")).toBeLessThan(at("Nuestras garantías"));
     const cupos = page.getByRole("region", { name: /^Cupos de / });
     await expect(cupos).toContainText(/Quedan? \d de \d cupos|completos/);
@@ -2932,7 +2957,7 @@ test.describe("oferta irresistible: promesa, resultado medible, precio, garantia
     await expect(page.getByRole("heading", { name: "Nuestras garantías" })).toBeVisible();
     await expect(page.getByRole("region", { name: /^Cupos de / })).toBeVisible();
     await page.goto("/en/services/landing-page", { waitUntil: "networkidle" });
-    await expect(page.getByRole("heading", { name: "How you will know it worked" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Measurable results in every delivery" })).toBeVisible();
     await expect(page.getByRole("region", { name: / slots$/ })).toContainText(/left|full/);
   });
 });
@@ -2991,5 +3016,52 @@ test.describe("head: iconos, manifest, logo e imagen para enlaces", () => {
     expect(ld).toContain("contact@acmora.com");
     expect(await page.content()).not.toMatch(/acmera/i);
     await expect(page.locator("header img").first()).toHaveAttribute("alt", "Acmora");
+  });
+});
+
+test.describe("formularios sincronizados: mismo selector de servicio y mismo limite de 60 caracteres", () => {
+  const openQuote = async (page: Page) => {
+    await page.goto("/es/servicios/landing-page", { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Cotizar plan Básico" }).click();
+    const dialog = page.getByRole("dialog", { name: "Solicita tu cotización" });
+    await expect(dialog.getByLabel(/Nombre completo o empresa/)).toBeVisible();
+    return dialog;
+  };
+  const openContact = async (page: Page) => {
+    await page.goto("/es/contacto", { waitUntil: "networkidle" });
+    return page.locator("main form");
+  };
+
+  for (const [where, open] of [
+    ["dialogo de cotizacion", openQuote],
+    ["formulario de contacto", openContact],
+  ] as const) {
+    test(`${where}: con mas de 60 caracteres en el nombre muestra que el maximo es 60, y con 60 no`, async ({ page }) => {
+      const form = await open(page);
+      const name = form.getByLabel(/Nombre completo o empresa/);
+      await name.fill("x".repeat(61));
+      await expect(form.getByText("El máximo es de 60 caracteres.")).toBeVisible();
+      await expect(name).toHaveAttribute("aria-invalid", "true");
+      await name.fill("x".repeat(60));
+      await expect(form.getByText("El máximo es de 60 caracteres.")).toHaveCount(0);
+      await expect(name).not.toHaveAttribute("aria-invalid", "true");
+    });
+  }
+
+  test("el selector de servicio es el mismo en el dialogo y en la pagina de contacto", async ({ page }) => {
+    const optionsOf = async (form: ReturnType<Page["locator"]>) => {
+      const select = form.getByRole("combobox", { name: /Servicio/ });
+      await select.click();
+      const list = page.getByRole("listbox", { name: /Servicio/ });
+      await expect(list).toBeVisible();
+      const texts = await list.getByRole("option").allTextContents();
+      const cls = await list.getAttribute("class");
+      await page.keyboard.press("Escape");
+      return { texts, cls };
+    };
+    const dialog = await optionsOf(await openQuote(page));
+    const contact = await optionsOf(await openContact(page));
+    expect(contact).toEqual(dialog);
+    expect(dialog.texts).toEqual(["Selecciona un servicio", "Landing Page", "Página Web Multipágina", "CRM Personalizado", "Mantención web", "Otro / No sé cuál necesito"]);
   });
 });

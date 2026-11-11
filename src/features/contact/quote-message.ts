@@ -1,4 +1,4 @@
-import { COUNTRY_CODES, SERVICE_OPTIONS, type QuoteField, type QuoteValues } from "./state";
+import { COUNTRY_CODES, LIMITS, SERVICE_OPTIONS, type QuoteField, type QuoteValues } from "./state";
 
 /** Rotulos del mensaje (ya en el idioma de la pagina). */
 export type QuoteShareLabels = {
@@ -27,12 +27,12 @@ export type QuoteShareLabels = {
 /** Mismas reglas que `quoteSchema`, sin Zod para no cargarlo en el cliente: todos los campos son obligatorios. */
 export function validateQuote(v: QuoteValues): QuoteField[] {
   const failed: QuoteField[] = [];
-  if (v.name.trim().length < 2 || v.name.trim().length > 100) failed.push("name");
+  if (v.name.trim().length < LIMITS.nameMin || v.name.trim().length > LIMITS.nameMax) failed.push("name");
   const digits = v.phone.trim();
-  const phoneOk = /^\d+$/.test(digits) && digits.length <= 12 && (v.phoneCountry === "+56" ? digits.length === 9 : digits.length >= 6) && COUNTRY_CODES.some((c) => c === v.phoneCountry);
+  const phoneOk = /^\d+$/.test(digits) && digits.length <= LIMITS.phoneMax && (v.phoneCountry === "+56" ? digits.length === 9 : digits.length >= 6) && COUNTRY_CODES.some((c) => c === v.phoneCountry);
   if (!phoneOk) failed.push("phone");
   if (!SERVICE_OPTIONS.some((s) => s === v.service)) failed.push("service");
-  if (v.message.trim().length < 10 || v.message.trim().length > 500) failed.push("message");
+  if (v.message.trim().length < LIMITS.messageMin || v.message.trim().length > LIMITS.messageMax) failed.push("message");
   if (!v.consent) failed.push("consent");
   return failed;
 }

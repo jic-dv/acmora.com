@@ -8,6 +8,9 @@ describe("validateQuote", () => {
   it("acepta una solicitud completa", () => {
     expect(validateQuote(values)).toEqual([]);
   });
+  it("acepta un nombre de exactamente 60 caracteres", () => {
+    expect(validateQuote({ ...values, name: "x".repeat(60) })).toEqual([]);
+  });
   it("marca todos los campos vacios como obligatorios", () => {
     expect(validateQuote({ name: "", phoneCountry: "+56", phone: "", service: "", message: "", consent: false })).toEqual(["name", "phone", "service", "message", "consent"]);
   });
@@ -16,6 +19,7 @@ describe("validateQuote", () => {
     ["telefono con letras", { phone: "9517abcde" }, "phone"],
     ["prefijo fuera de la lista", { phoneCountry: "+999" }, "phone"],
     ["servicio fuera de la lista", { service: "hackear" }, "service"],
+    ["nombre de mas de 60 caracteres", { name: "x".repeat(61) }, "name"],
     ["mensaje de menos de 10 caracteres", { message: "hola" }, "message"],
     ["mensaje de mas de 500", { message: "x".repeat(501) }, "message"],
     ["sin aceptar terminos y politica de privacidad", { consent: false }, "consent"],

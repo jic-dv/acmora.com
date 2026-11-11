@@ -9,13 +9,13 @@ import SelectField from "@/shared/components/core/SelectField";
 import { cn } from "@/shared/lib/cn";
 import { keepDigits } from "@/shared/lib/digits";
 import { validateQuote } from "../quote-message";
-import { SERVICE_OPTIONS, type QuoteField, type QuoteValues } from "../state";
+import { LIMITS, SERVICE_OPTIONS, type QuoteField, type QuoteValues } from "../state";
 import { controlClass } from "./controls";
 import CountryField from "./CountryField";
 
 /** Textos de los campos compartidos por el dialogo de cotizacion y el formulario de contacto. */
 export type FieldsCopy = {
-  name: { label: string };
+  name: { label: string; max: string };
   phone: { label: string; country: string; empty: string };
   service: { label: string; placeholder: string };
   services: Record<(typeof SERVICE_OPTIONS)[number], string>;
@@ -118,11 +118,28 @@ type Props = {
  * recoge el <form> que los contiene (ver `useLiveValidation`).
  */
 export default function QuoteFields({ uid, locale, copy, privacyHref, termsHref, defaultService, shown, sync, autoFocus }: Props) {
-  const err = (f: QuoteField) => (shown.has(f) ? copy.errors[f] : undefined);
+  // Largo del nombre: si supera el maximo, el error lo dice explicitamente (en vez del mensaje general del campo).
+  const [nameLength, setNameLength] = useState(0);
+  const err = (f: QuoteField) => {
+    if (!shown.has(f)) return undefined;
+    if (f === "name" && nameLength > LIMITS.nameMax) return copy.name.max.replace("{max}", String(LIMITS.nameMax));
+    return copy.errors[f];
+  };
   return (
     <>
       <Field id={`${uid}-name`} label={copy.name.label} error={err("name")} required>
-        {(a11y) => <input {...a11y} name="name" type="text" autoComplete="name" required autoFocus={autoFocus} className={controlClass} />}
+        {(a11y) => (
+          <input
+            {...a11y}
+            name="name"
+            type="text"
+            autoComplete="name"
+            required
+            autoFocus={autoFocus}
+            onInput={(e) => setNameLength(e.currentTarget.value.trim().length)}
+            className={controlClass}
+          />
+        )}
       </Field>
 
       <div className="grid grid-cols-[7rem_minmax(0,1fr)] items-start gap-3 sm:grid-cols-[8.5rem_minmax(0,1fr)]">
@@ -145,7 +162,7 @@ export default function QuoteFields({ uid, locale, copy, privacyHref, termsHref,
       />
 
       <Field id={`${uid}-message`} label={copy.message.label} error={err("message")} required>
-        {(a11y) => <textarea {...a11y} name="message" rows={3} required maxLength={500} className={cn(controlClass, "resize-y")} />}
+        {(a11y) => <textarea {...a11y} name="message" rows={3} required maxLength={LIMITS.messageMax} className={cn(controlClass, "resize-y")} />}
       </Field>
 
       {/* Consentimiento expreso (Ley 21.719): casilla obligatoria, con los dos documentos en una pestana nueva. */}

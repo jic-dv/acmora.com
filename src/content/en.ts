@@ -140,7 +140,7 @@ const cookies: Doc = {
 
 export const en: Copy = {
   brand: {
-    tagline: "Websites and systems that get your business found, trusted and contacted",
+    tagline: "Custom web and software development agency for businesses",
     logoTitle: "Acmora, go to the home page",
     /** The title attribute of every image (every image carries a descriptive alt and title). */
     imageTitles: { logo: "Acmora logo, web and web application studio", cover: (project: string) => `Cover of the ${project} project: screenshot of its website` },
@@ -364,7 +364,7 @@ export const en: Copy = {
       generic: "Tell us what you need and we will get back to you. No commitment.",
       title: "Request your quote",
       plan: (service: string, plan: string) => `${service} · ${plan} plan`,
-      name: { label: "Full name or company" },
+      name: { label: "Full name or company", max: "The maximum is {max} characters." },
       phone: { label: "Phone", country: "Country code", empty: "No results" },
       service: { label: "Service", placeholder: "Select a service" },
       message: { label: "Tell us about the project" },
@@ -466,15 +466,15 @@ export const en: Copy = {
     },
   },
   meta: {
-    home: { title: "Acmora: custom websites and web apps for businesses", description: "We design and build landing pages, corporate sites and custom CRMs for entrepreneurs and companies in Chile. Transparent prices and Spanish-language support." },
-    services: { title: "Services: websites, CRM and maintenance in Chile | Acmora", description: "Landing page, multi-page website, custom CRM and website maintenance, each with three plans. What each service includes, how long it takes and what it costs." },
+    home: { title: "Acmora: custom web and software development agency", description: "Website, landing page and custom CRM development for companies and small businesses. Fixed price, delivery in days, and domain and hosting in your name." },
+    services: { title: "Web development, CRM and maintenance services | Acmora", description: "Website, landing page, custom CRM and website maintenance development services, each with three plans. What each one includes, its delivery time and price." },
     projects: { title: "Recent web projects: live websites and portals | Acmora", description: "See the most recent projects we have built: live websites and portals and demo versions, each with its cover, description and a link to visit it." },
-    pricing: { title: "Website, CRM and maintenance pricing in Chile | Acmora", description: "Transparent prices in US dollars for landing pages, multi-page sites, CRMs and maintenance. What each plan includes, timelines, support and payment terms." },
+    pricing: { title: "Website, landing page, CRM and maintenance pricing | Acmora", description: "Transparent prices in US dollars for landing pages, multi-page sites, CRMs and maintenance. What each plan includes, timelines, support and payment terms." },
     faq: { title: "FAQ: answers about websites, CRM and maintenance | Acmora", description: "Answers to common questions about timelines, pricing, domain and hosting, support, installment payments and coverage for your website, CRM or maintenance." },
     about: { title: "About us: who you talk to and how we work | Acmora", description: "Who you work with at Acmora, what our commitments are and how your project runs in three steps, from the first conversation to the launch of your website." },
     contact: { title: "Contact: get a free quote for your web project | Acmora", description: "Write to us through the form, WhatsApp or email to quote your website, your CRM or your maintenance. We reply within 24 business hours, no commitment." },
     privacy: { title: "Privacy policy and personal data protection | Acmora", description: "What data we collect on this site, for what purpose and on what legal basis, how long we keep it and how to exercise your rights under Law 21.719." },
-    terms: { title: "Terms and conditions of our web design services | Acmora", description: "Acmora's contracting conditions: services and plans, prices, payments, timelines, revisions, intellectual property, warranty and governing law in Chile." },
+    terms: { title: "Terms and conditions of our web design services | Acmora", description: "Acmora's contracting conditions: services and plans, prices, payments, timelines, revisions, intellectual property, warranty, cancellation and governing law." },
     cookies: { title: "Cookie policy: this site does not use cookies | Acmora", description: "This site sets no cookies. It only remembers your light or dark theme preference if you use the button. What it stores and what we will do if that changes." },
   },
   faq: {
@@ -485,22 +485,22 @@ export const en: Copy = {
       { q: "What if I need changes after delivery?", a: "Every plan includes revisions during development and, once delivered, a guaranteed support period that is already paid with the project: 1 month on the Basic plan, 3 on Standard and 6 on Premium. It is not a separate charge or something you have to contract later. Within that period we cover minor changes, security updates and support. When it ends you can extend it with maintenance, for 3, 6 or 12 months paid in advance or month to month." },
       { q: "Will my website show up on Google?", a: "Yes. We leave the site ready for Google to find it and show you confirmation that it was indexed, which usually arrives within days. What we do not promise is a specific position: that depends on your competition and the age of your domain, and nobody controls it. Anyone who guarantees you first place is selling you something they cannot deliver." },
       { q: "Is the site in my name?", a: "Yes. The domain is registered in your name and when the project goes live we hand over the access and credentials of the domain, the hosting and your emails; your texts and images are yours. Maintenance is optional with no minimum term: if you leave it, your site stays online and your access stays yours. The source code is not handed over with the plan, but you can buy it with a one-time payment whenever you want, also later: each plan shows its price under the See more button. You are not tied to us or to a monthly fee." },
-      { q: "Do you only work in Santiago or across Chile?", a: "We work with clients across Chile and also abroad. The whole process is remote: video call meetings, online deliveries and support by email or WhatsApp." },
+      { q: "Do you work with clients in any country?", a: "Yes. The whole process is remote: video call meetings, online deliveries and support by email or WhatsApp, wherever you are." },
       { q: "Can I pay in installments?", a: "Yes. We offer payment in 2 installments: 50% to start the project and 50% on delivery. For large projects we consider a 3-installment plan. We accept bank transfer and credit card." },
       { q: "Who will I talk to?", a: "To José Ignacio Contreras Castro, directly. There is no account executive or help desk in between: the same person who designs and builds your project answers your messages and applies the changes after delivery. You can write to contact@acmora.com, reach us on WhatsApp at +56 9 5173 0743, or leave your details in the contact form." },
     ],
   },
   docs: {
     home: {
-      title: "Get found, get trusted, get contacted",
-      lead: "Websites and custom systems for businesses in Chile. A fixed price, ready in days and everything in your name: domain, hosting and passwords.",
+      title: "Website, landing page and custom CRM development for businesses",
+      lead: "Software development agency with a fixed price, delivery in days, and domain, hosting and access in your name.",
       hero: {
         primary: { label: "Request a service", title: "Go to the services page to choose the one you need and see its plans and prices" },
         secondary: { label: "Talk on WhatsApp", title: "Open WhatsApp to talk directly with Acmora", message: "Hello, I saw the Acmora website and would like more information about your services." },
       },
       cta: {
-        title: "What is costing your business customers today?",
-        text: "Tell us what is going on and we will propose how to solve it, with scope, price and timeline in writing. We reply within 24 business hours.",
+        title: "Get a quote for your project",
+        text: "Tell us what you need and we will send you a proposal with scope, price and timeline in writing. We reply within 24 business hours.",
         primary: { label: "Free quote", title: "Go to the contact form to quote your project with no commitment" },
         secondary: { label: "Message on WhatsApp", title: "Open WhatsApp to talk to Acmora" },
       },
@@ -511,14 +511,14 @@ export const en: Copy = {
         columns: [
           {
             eyebrow: "WEBSITES",
-            heading: "Turn the people who look you up into people who message you",
-            text: "A landing page so the people who see you on social media message you on WhatsApp, or a complete site so your company looks as big as what it really does.",
+            heading: "Websites and landing pages",
+            text: "Fast sites, mobile-ready and prepared for Google, with a contact form and WhatsApp button. From a one-page landing to a complete corporate site.",
             action: { label: "See websites", title: "See the landing page and multi-page website services" },
           },
           {
             eyebrow: "APPLICATIONS AND SUPPORT",
-            heading: "Your business out of spreadsheets and your website always working",
-            text: "A custom CRM so no customer or quote slips through the cracks, and maintenance that looks after your site for you.",
+            heading: "Custom CRM and website maintenance",
+            text: "Systems to manage customers, sales, quotes and support around your process, and maintenance with backups, updates and content changes.",
             action: { label: "See CRM and maintenance", title: "See the custom CRM and website maintenance services" },
           },
         ],
@@ -528,36 +528,36 @@ export const en: Copy = {
         heading: "Your project in 3 steps",
         intro: "No bureaucracy, no surprises: you know what you get, what it costs and when it is ready before we start.",
         steps: [
-          { title: "We talk", text: "You tell us what is costing you customers or time. We reply within 24 business hours with a written proposal of scope, price and timeline. No commitment." },
-          { title: "We design and build", text: "You see the design before it is coded and you approve it. We keep you posted at every stage. Revision rounds come included in every plan." },
-          { title: "We launch", text: "Your site goes live with domain, hosting and a secure connection. You receive all the access in your name. From that day it can start bringing you customers, with support included." },
+          { title: "We talk", text: "We review your project by call or message. Within 24 business hours we send you a proposal with scope, price and timeline in writing. No commitment." },
+          { title: "We design and build", text: "You approve the design before it is coded. We report progress at every stage. Revision rounds come included in every plan." },
+          { title: "We launch", text: "We publish your site with domain, hosting and a secure connection. You receive all the access in your name. Post-delivery support is included." },
         ],
       },
       why: {
-        heading: "What your business gains",
+        heading: "Benefits of working with Acmora",
         feature: {
-          eyebrow: "RESULTS",
-          heading: "A site that works for you while you run your business",
+          eyebrow: "BENEFITS",
+          heading: "Fast, secure sites prepared for Google",
           action: { label: "See services", title: "See the website, CRM and maintenance services" },
         },
         more: { eyebrow: "AND MORE", heading: "What every project includes" },
         items: [
-          { icon: "gauge", title: "No visits lost to slowness", text: "Your site opens fast, even on mobile data. Every second of waiting is a customer who leaves, and Google notices." },
-          { icon: "layout", title: "You look serious on any screen", text: "Phone, tablet or computer: your business looks professional on whatever screen your customer uses." },
-          { icon: "search", title: "People find you on Google", text: "We leave it ready for Google to understand what you do and show it to the people looking for you." },
-          { icon: "lock", title: "No security scares", text: "Secure connection, backups and protection, so your site and your customers' data stay safe." },
-          { icon: "chart", title: "Built to get you messages", text: "Every section leads the visitor to contact you, not just to look around." },
-          { icon: "headset", title: "You talk to the person who built it", text: "No call center or tickets: you message on WhatsApp and the same person who built your site answers." },
+          { icon: "gauge", title: "Fast loading", text: "Your site opens fast even on mobile data, which improves your customers' experience and your Google ranking." },
+          { icon: "layout", title: "Responsive design", text: "It looks and works correctly on phone, tablet and computer." },
+          { icon: "search", title: "Optimized for Google", text: "Structure, metadata and performance prepared for Google to index and show your site." },
+          { icon: "lock", title: "Security and backups", text: "Secure connection (SSL), backups and protection of your customers' data." },
+          { icon: "chart", title: "Built for contacts", text: "Forms and WhatsApp buttons placed to make it easy for customers to reach you." },
+          { icon: "headset", title: "Direct service", text: "You talk by WhatsApp or email with the person who builds your site, with no intermediaries." },
         ],
       },
-      pricing: { heading: "No surprises, no fine print", intro: "Prices in US dollars, converted from Chilean pesos at the current rate. What you see is what you pay. Custom quote based on your project.", caption: "Prices by service and plan", head: ["Service", "Basic", "Standard", "Premium"], from: "From", action: { label: "See pricing details", title: "Go to the page with pricing details and terms" } },
-      faq: { heading: "We answer your questions", intro: "The questions we get most before people hire us." },
+      pricing: { heading: "Prices by service and plan", intro: "Prices in US dollars, converted from Chilean pesos at the current rate. What you see is what you pay. Custom quote based on your project.", caption: "Prices by service and plan", head: ["Service", "Basic", "Standard", "Premium"], from: "From", action: { label: "See pricing details", title: "Go to the page with pricing details and terms" } },
+      faq: { heading: "Frequently asked questions", intro: "The questions we get most before people hire us." },
     },
     /** Offer: what each delivery measures, the guarantees and this month's slots. Must match the Terms (section 11). */
     offer: {
       results: {
-        heading: "How you will know it worked",
-        intro: "We do not ask for faith: every delivery is measured and put in writing.",
+        heading: "Measurable results in every delivery",
+        intro: "Every delivery is measured and documented in writing.",
         report: { title: "Delivery report", text: "When your site goes live you receive a report with its Google PageSpeed score, load time and accessibility, measured that day." },
         google: { title: "Google confirmed", text: "We register your site in Google Search Console and show you the confirmation that Google indexed it." },
         deadline: { title: "Delivery date in writing", text: "The date goes in your quote and is covered by the on-time delivery guarantee." },
@@ -565,7 +565,7 @@ export const en: Copy = {
       },
       guarantees: {
         heading: "Our guarantees",
-        intro: "If we do not deliver, you pay less or you do not pay. That simple, and it is written in the Terms.",
+        intro: "Commitments in writing: if we do not deliver, you pay less or you do not pay. Each guarantee is detailed in the Terms and Conditions.",
         design: { title: "Design approved or your deposit back", text: "If after the revision rounds you do not approve the design, we refund the 50% you paid at the start and you pay nothing else." },
         time: { title: "On time or a discount", text: "If we are late for reasons on our side, we take 5% off the price for each business day of delay, up to 30%." },
         speed: { title: "Guaranteed speed", text: "Your site scores 90 or more on Google PageSpeed for mobile, or we optimize it at no cost until it does." },
@@ -584,8 +584,8 @@ export const en: Copy = {
     },
     services: {
       title: "Website, web application and maintenance services",
-      lead: "Each service solves a specific problem: getting messages, being taken seriously, organizing your business or keeping your website always working. Pick yours and see the fixed-price plans.",
-      tabs: { heading: "Our services", intro: "Pick what you want to solve and instantly see what you get and what it costs.", label: "Available services", title: (name: string) => `See the plans, prices and timelines of the ${name} service` },
+      lead: "Landing pages, corporate websites, custom CRM and website maintenance. Each service has fixed-price plans, a delivery time and a detail of what it includes.",
+      tabs: { heading: "Our services", intro: "Choose a service to see what it includes, its plans and prices.", label: "Available services", title: (name: string) => `See the plans, prices and timelines of the ${name} service` },
       receive: "What you will receive",
       receiveMore: "Show {n} more",
       receiveLess: "Show less",
@@ -680,7 +680,7 @@ export const en: Copy = {
     },
     maintenance: {
       title: "Website maintenance: your site up to date, secure and online",
-      lead: "An optional service with no minimum term so your site keeps running, updated and backed up once the included support ends. You request changes on WhatsApp and they get done.",
+      lead: "Optional service with no minimum term to keep your site updated, backed up and online once the included support ends. Changes are requested by email or WhatsApp.",
       covers: { heading: "What maintenance covers", items: ["Content changes: texts, images and prices", "Domain renewed and correctly pointed", "Cloud services where your site lives, kept up to date", "Backups and security patches", "Fault fixing and monitoring that it stays online"], note: "It does not include new sections or features: those are quoted separately." },
       prices: { heading: "Plans and prices", intro: "Prices in US dollars. You can pay 3, 6 or 12 months in advance, or month to month.", caption: "Maintenance prices by service", head: ["Service", "3 months", "6 months", "1 year", "Month to month"], quote: "Quote on request", crmNote: "The CRM includes mandatory maintenance from going into production; its value is set during discovery." },
       how: {
@@ -729,7 +729,7 @@ export const en: Copy = {
     },
     pricing: {
       tabs: { heading: "Pricing by service", intro: "Choose a service to see the price of each plan, what it includes and its delivery time.", label: "Services with prices" },
-      title: "Clear pricing, no fine print",
+      title: "Website, landing page and CRM pricing",
       lead: "Pick a plan, see what it includes and get a quote in minutes. Prices in US dollars, no fine print.",
       hero: {
         primary: { label: "See plans and prices", title: "Jump to the prices of each service and plan" },
@@ -746,7 +746,7 @@ export const en: Copy = {
       },
     },
     about: {
-      title: "About us: a real person behind your project",
+      title: "About us: web development with direct service",
       lead: "Acmora is a web design and development studio run directly by José Ignacio Contreras Castro: whoever designs and builds your project is whoever answers your messages.",
       who: { heading: "Who you will talk to", text: "To José Ignacio Contreras Castro, directly. There is no account executive or help desk in between: the same person who designs and builds your project answers your messages and applies the changes after delivery." },
       commitments: {
@@ -754,7 +754,7 @@ export const en: Copy = {
         items: [
           { term: "No long contracts", desc: "Quote per project and optional month-to-month maintenance, which can be ended with 15 days' notice." },
           { term: "Domain and access in your name", desc: "The domain is registered in your name and we hand over the access and credentials of the hosting and your emails. The source code is bought separately whenever you want and maintenance is optional: you are not tied to us." },
-          { term: "Everything online, across Chile", desc: "We work with clients across Chile and also abroad: video call meetings, online deliveries and support by email or WhatsApp." },
+          { term: "Everything online, from any country", desc: "Video call meetings, online deliveries and support by email or WhatsApp, wherever you are." },
           { term: "Dates in writing", desc: "The delivery date is set in writing in the quote." },
           { term: "No promises we cannot keep", desc: "We leave the site ready for Google and show you that it was indexed, but we do not promise a specific position." },
         ],

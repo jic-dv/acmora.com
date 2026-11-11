@@ -6,7 +6,8 @@ import { getPlanServices } from "@/features/catalog/services/catalog";
 import { getProjects } from "@/features/projects/services/projects";
 import { COMPANY, SITE_REVISION, whatsappLink } from "@/shared/constants/site";
 import { PAGE_PATHNAME, type PageKey } from "@/shared/lib/doc";
-import { breadcrumbNode, graph, organizationNode, websiteNode, webPageNode } from "@/shared/lib/jsonld";
+import { keywordsFor, SERVICE_KEYWORDS } from "@/shared/constants/keywords";
+import { breadcrumbNode, faqPageNode, graph, organizationNode, websiteNode, webPageNode } from "@/shared/lib/jsonld";
 import { getFxRates } from "@/shared/lib/fx";
 import { FALLBACK_FX, planAmount, type FxRates } from "@/shared/lib/money";
 import { absoluteUrl, buildMetadata, pathFor } from "@/shared/lib/seo";
@@ -22,11 +23,25 @@ const refFor = (key: PageKey): StaticRef => ({ pathname: PAGE_PATHNAME[key] as E
 /** Documentos legales: llevan navegacion lateral entre sus secciones. */
 const LEGAL_KEYS: PageKey[] = ["privacy", "terms", "cookies"];
 
+/** Grupos de palabras clave de cada pagina (ademas de la marca y las generales). */
+const PAGE_KEYWORDS: Record<PageKey, Parameters<typeof keywordsFor>[1][]> = {
+  home: ["landing", "multipagina", "crm"],
+  services: ["landing", "multipagina", "crm", "maintenance"],
+  pricing: ["pricing"],
+  projects: ["multipagina"],
+  faq: ["faq"],
+  about: ["about"],
+  contact: ["contact"],
+  privacy: [],
+  terms: [],
+  cookies: [],
+};
+
 const PAGE_TYPE = { about: "AboutPage", contact: "ContactPage", services: "CollectionPage", pricing: "CollectionPage", projects: "CollectionPage" } as const;
 
 export function docMetadata(locale: Locale, key: PageKey): Metadata {
   const m = getCopy(locale).meta[key];
-  return buildMetadata({ locale, ref: refFor(key), title: m.title, description: m.description });
+  return buildMetadata({ locale, ref: refFor(key), title: m.title, description: m.description, keywords: keywordsFor(locale, ...PAGE_KEYWORDS[key]) });
 }
 
 function extraNodes(locale: Locale, key: PageKey, fx: FxRates): Record<string, unknown>[] {
@@ -64,7 +79,9 @@ function extraNodes(locale: Locale, key: PageKey, fx: FxRates): Record<string, u
             description: s.summary[locale],
             url: absoluteUrl(pathFor(locale, { pathname: "/services/[slug]", slug: s.slug })),
             provider: { "@id": orgId },
-            areaServed: "CL",
+            serviceType: s.name[locale],
+            category: locale === "es" ? "Desarrollo de software" : "Software development",
+            keywords: keywordsFor(locale, SERVICE_KEYWORDS[s.slug] ?? "general").join(", "),
             offers: offersOf(s.plans),
           })),
         ),
@@ -87,8 +104,10 @@ function extraNodes(locale: Locale, key: PageKey, fx: FxRates): Record<string, u
     case "contact":
       return [
         organizationNode(locale),
-        { "@type": "ContactPoint", contactType: "sales", email: COMPANY.email, telephone: COMPANY.phone, availableLanguage: ["es", "en"], areaServed: "CL" },
+        { "@type": "ContactPoint", contactType: "sales", email: COMPANY.email, telephone: COMPANY.phone, availableLanguage: ["es", "en"] },
       ];
+    case "faq":
+      return [faqPageNode(c.faq.items)];
     default:
       return [];
   }

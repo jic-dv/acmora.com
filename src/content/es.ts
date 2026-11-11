@@ -143,7 +143,7 @@ const cookies: Doc = {
 
 export const es = {
   brand: {
-    tagline: "Webs y sistemas para que a tu negocio lo encuentren, le crean y le escriban",
+    tagline: "Agencia de desarrollo web y software a medida para empresas",
     logoTitle: "Acmora, ir al inicio",
     /** Atributo title de cada imagen (toda imagen lleva alt y title descriptivos). */
     imageTitles: { logo: "Logotipo de Acmora, estudio de páginas web y aplicaciones web", cover: (project: string) => `Portada del proyecto ${project}: captura de su sitio web` },
@@ -152,7 +152,7 @@ export const es = {
     home: { label: "Inicio", title: "Inicio de Acmora: páginas web y aplicaciones web para emprendedores y empresas" },
     services: { label: "Servicios", title: "Servicios de landing page, página web multipágina, CRM y mantención web" },
     projects: { label: "Proyectos", title: "Proyectos recientes publicados y en demostración creados por Acmora" },
-    pricing: { label: "Precios", title: "Precios transparentes en pesos chilenos de cada servicio y plan" },
+    pricing: { label: "Precios", title: "Precios transparentes de cada servicio y plan" },
     faq: { label: "FAQ", title: "Preguntas frecuentes sobre plazos, precios, soporte y formas de pago" },
     about: { label: "Nosotros", title: "Con quién trabajas en Acmora y cómo lo hacemos" },
     contact: { label: "Contacto", title: "Escribir a Acmora para cotizar tu proyecto" },
@@ -367,7 +367,7 @@ export const es = {
       generic: "Cuéntanos qué necesitas y te contactamos. Sin compromiso.",
       title: "Solicita tu cotización",
       plan: (service: string, plan: string) => `${service} · Plan ${plan}`,
-      name: { label: "Nombre completo o empresa" },
+      name: { label: "Nombre completo o empresa", max: "El máximo es de {max} caracteres." },
       phone: { label: "Teléfono", country: "Código de país", empty: "Sin resultados" },
       service: { label: "Servicio", placeholder: "Selecciona un servicio" },
       message: { label: "Cuéntanos sobre el proyecto" },
@@ -469,15 +469,15 @@ export const es = {
     },
   },
   meta: {
-    home: { title: "Acmora: páginas web y aplicaciones web a medida en Chile", description: "Diseñamos y desarrollamos landing pages, sitios corporativos y CRM a medida para emprendedores y empresas en Chile. Precios transparentes y soporte en español." },
-    services: { title: "Servicios de páginas web, CRM y mantención | Acmora", description: "Landing page, página web multipágina, CRM personalizado y mantención web, cada uno con tres planes. Qué incluye cada servicio, en cuánto tiempo y a qué precio." },
+    home: { title: "Acmora: agencia de desarrollo web y software a medida", description: "Desarrollo de páginas web, landing pages y CRM personalizados para empresas y pymes. Precio cerrado, entrega en días y dominio, hosting y accesos a tu nombre." },
+    services: { title: "Servicios de desarrollo web, CRM y mantención | Acmora", description: "Servicios de desarrollo de páginas web, landing pages, CRM personalizado y mantención web, con tres planes cada uno. Qué incluye, plazo de entrega y precio." },
     projects: { title: "Proyectos web recientes: sitios y portales | Acmora", description: "Mira los proyectos más recientes que hemos creado: sitios y portales en producción y en demostración, con su portada, descripción y enlace para visitarlos." },
-    pricing: { title: "Precios de páginas web, CRM y mantención en Chile | Acmora", description: "Precios transparentes en pesos chilenos para landing page, sitio multipágina, CRM y mantención. Qué incluye cada plan, plazos, soporte y condiciones de pago." },
-    faq: { title: "Preguntas frecuentes sobre páginas web y CRM | Acmora", description: "Respuestas a las dudas más comunes sobre plazos, precios, dominio y hosting, soporte, pago en cuotas y cobertura de tu página web, CRM o mantención en Chile." },
+    pricing: { title: "Precios de páginas web, CRM y mantención web | Acmora", description: "Precios transparentes para landing page, sitio web multipágina, CRM a medida y mantención web. Qué incluye cada plan, plazos, soporte y condiciones de pago." },
+    faq: { title: "Preguntas frecuentes sobre páginas web y CRM | Acmora", description: "Respuestas a las dudas más comunes sobre plazos, precios, dominio y hosting, soporte, pago en cuotas y atención remota para tu página web, CRM o mantención." },
     about: { title: "Nosotros: con quién hablas y cómo trabajamos | Acmora", description: "Con quién trabajas en Acmora, cuáles son nuestros compromisos y cómo es el proceso de tu proyecto en tres pasos, de la primera conversación al lanzamiento." },
-    contact: { title: "Contacto: cotiza gratis tu proyecto web en Chile | Acmora", description: "Escríbenos por el formulario, por WhatsApp o por correo para cotizar tu página web, tu CRM o tu mantención. Respondemos en menos de 24 horas hábiles." },
+    contact: { title: "Contacto: cotiza gratis tu página web o tu CRM | Acmora", description: "Escríbenos por el formulario, por WhatsApp o por correo para cotizar tu página web, tu CRM o tu mantención. Respondemos en menos de 24 horas hábiles." },
     privacy: { title: "Política de privacidad y datos personales | Acmora", description: "Qué datos recogemos en este sitio, con qué finalidad y base legal, cuánto tiempo los conservamos y cómo ejercer tus derechos según la Ley 21.719." },
-    terms: { title: "Términos y condiciones de los servicios web | Acmora", description: "Condiciones de contratación de Acmora: servicios y planes, precios, pagos, plazos, revisiones, propiedad intelectual, garantía y ley aplicable en Chile." },
+    terms: { title: "Términos y condiciones de los servicios web | Acmora", description: "Condiciones de contratación de Acmora: servicios y planes, precios, pagos, plazos, revisiones, propiedad intelectual, garantía, cancelación y ley aplicable." },
     cookies: { title: "Política de cookies: este sitio no usa cookies | Acmora", description: "Este sitio no instala cookies. Solo recuerda tu preferencia de tema claro u oscuro si usas el botón. Detalle de lo que guarda y qué haremos si cambia." },
   },
   faq: {
@@ -488,22 +488,22 @@ export const es = {
       { q: "¿Qué pasa si necesito cambios después de la entrega?", a: "Cada plan incluye revisiones durante el desarrollo y, una vez entregado, un período de soporte garantizado que ya viene pagado con el proyecto: 1 mes en el plan Básico, 3 en el Estándar y 6 en el Premium. No es un cobro aparte ni algo que tengas que contratar después. Dentro de ese período cubrimos cambios menores, actualizaciones de seguridad y soporte. Cuando se termina puedes extenderlo con mantención, por 3, 6 o 12 meses pagados por adelantado o mes a mes." },
       { q: "¿Mi página web va a aparecer en Google?", a: "Sí. Dejamos el sitio preparado para que Google lo encuentre y te mostramos la confirmación de que quedó indexado, que suele llegar en días. Lo que no prometemos es una posición determinada: eso depende de tu competencia y de la antigüedad de tu dominio, y no lo controla nadie. Quien te garantice el primer lugar te está vendiendo algo que no puede cumplir." },
       { q: "¿El sitio queda a mi nombre?", a: "Sí. El dominio se registra a tu nombre y al publicar te entregamos los accesos y credenciales del dominio, el hosting y tus correos; tus textos e imágenes son tuyos. La mantención es opcional y sin permanencia: si la dejas, tu sitio sigue en línea y tus accesos siguen siendo tuyos. El código fuente no se entrega con el plan, pero puedes comprarlo con un pago único cuando quieras, también después: cada plan muestra su precio en el botón Ver más. No quedas amarrado a nosotros ni a una mensualidad." },
-      { q: "¿Trabajan solo en Santiago o en todo Chile?", a: "Trabajamos con clientes de todo Chile y también del extranjero. Todo el proceso es remoto: reuniones por videollamada, entregas en línea y soporte por correo o WhatsApp." },
+      { q: "¿Trabajan con clientes de cualquier país?", a: "Sí. Todo el proceso es remoto: reuniones por videollamada, entregas en línea y soporte por correo o WhatsApp, estés donde estés." },
       { q: "¿Puedo pagar en cuotas?", a: "Sí. Ofrecemos pago en 2 cuotas: 50% para iniciar el proyecto y 50% al momento de la entrega. Para proyectos grandes evaluamos un plan en 3 cuotas. Aceptamos transferencia bancaria y tarjeta de crédito." },
       { q: "¿Con quién voy a hablar?", a: "Con José Ignacio Contreras Castro, directamente. No hay ejecutivo de cuenta ni mesa de ayuda entre medio: la misma persona que diseña y desarrolla tu proyecto es la que responde tus mensajes y aplica los cambios después de la entrega. Puedes escribir a contact@acmora.com, hablar por WhatsApp al +56 9 5173 0743, o dejar tus datos en el formulario de contacto." },
     ],
   },
   docs: {
     home: {
-      title: "Que te encuentren, te crean y te escriban",
-      lead: "Páginas web y sistemas a medida para negocios en Chile. Precio cerrado, listo en días y todo a tu nombre: dominio, hosting y claves.",
+      title: "Desarrollo de páginas web, landing pages y CRM a medida para empresas",
+      lead: "Agencia de desarrollo de software con precio cerrado, entrega en días y dominio, hosting y accesos a tu nombre.",
       hero: {
         primary: { label: "Solicitar servicio", title: "Ir a la página de servicios para elegir el que necesitas y ver sus planes y precios" },
         secondary: { label: "Hablar por WhatsApp", title: "Abrir WhatsApp para hablar directamente con Acmora", message: "Hola, vi el sitio de Acmora y quiero más información sobre sus servicios." },
       },
       cta: {
-        title: "¿Qué le está costando clientes a tu negocio hoy?",
-        text: "Cuéntanos qué pasa y te proponemos cómo resolverlo, con alcance, precio y plazo por escrito. Respondemos en menos de 24 horas hábiles.",
+        title: "Cotiza tu proyecto",
+        text: "Cuéntanos qué necesitas y te enviamos una propuesta con alcance, precio y plazo por escrito. Respondemos en menos de 24 horas hábiles.",
         primary: { label: "Cotizar gratis", title: "Ir al formulario de contacto para cotizar tu proyecto sin compromiso" },
         secondary: { label: "Escribir por WhatsApp", title: "Abrir WhatsApp para hablar con Acmora" },
       },
@@ -514,14 +514,14 @@ export const es = {
         columns: [
           {
             eyebrow: "PÁGINAS WEB",
-            heading: "Que quien te busca termine escribiéndote",
-            text: "Una landing para que quien te ve en redes te escriba por WhatsApp, o un sitio completo para que tu empresa se vea del tamaño de lo que realmente hace.",
+            heading: "Páginas web y landing pages",
+            text: "Sitios rápidos, adaptados a celular y preparados para Google, con formulario de contacto y botón de WhatsApp. Desde una landing de una página hasta un sitio corporativo completo.",
             action: { label: "Ver páginas web", title: "Ver los servicios de landing page y página web multipágina" },
           },
           {
             eyebrow: "APLICACIONES Y SOPORTE",
-            heading: "Tu negocio fuera del Excel y tu web siempre funcionando",
-            text: "Un CRM a tu medida para que ningún cliente ni cotización se te olvide, y una mantención que cuida tu sitio por ti.",
+            heading: "CRM a medida y mantención web",
+            text: "Sistemas para gestionar clientes, ventas, cotizaciones y soporte según tu proceso, y mantención con respaldos, actualizaciones y cambios de contenido.",
             action: { label: "Ver CRM y mantención", title: "Ver los servicios de CRM personalizado y mantención web" },
           },
         ],
@@ -531,36 +531,36 @@ export const es = {
         heading: "Tu proyecto en 3 pasos",
         intro: "Sin burocracia ni sorpresas: sabes qué recibes, cuánto cuesta y cuándo está listo antes de empezar.",
         steps: [
-          { title: "Conversamos", text: "Nos cuentas qué te está costando clientes o tiempo. Te respondemos en menos de 24 horas hábiles con una propuesta de alcance, precio y plazo por escrito. Sin compromiso." },
-          { title: "Diseñamos y desarrollamos", text: "Ves el diseño antes de que se programe y lo apruebas tú. Te contamos el avance en cada etapa. Las rondas de revisión vienen incluidas en cada plan." },
-          { title: "Lanzamos", text: "Tu sitio queda en línea con dominio, hosting y conexión segura. Recibes todos los accesos a tu nombre. Desde ese día puede empezar a traerte clientes, con soporte incluido." },
+          { title: "Conversamos", text: "Revisamos tu proyecto por llamada o mensaje. En menos de 24 horas hábiles te enviamos una propuesta con alcance, precio y plazo por escrito. Sin compromiso." },
+          { title: "Diseñamos y desarrollamos", text: "Apruebas el diseño antes de programarlo. Te informamos el avance en cada etapa. Las rondas de revisión vienen incluidas en cada plan." },
+          { title: "Lanzamos", text: "Publicamos tu sitio con dominio, hosting y conexión segura. Recibes todos los accesos a tu nombre. El soporte posterior a la entrega viene incluido." },
         ],
       },
       why: {
-        heading: "Lo que gana tu negocio",
+        heading: "Beneficios de trabajar con Acmora",
         feature: {
-          eyebrow: "RESULTADOS",
-          heading: "Un sitio que trabaja por ti mientras atiendes tu negocio",
+          eyebrow: "BENEFICIOS",
+          heading: "Sitios rápidos, seguros y preparados para Google",
           action: { label: "Ver servicios", title: "Ver los servicios de páginas web, CRM y mantención" },
         },
         more: { eyebrow: "Y ADEMÁS", heading: "Lo que incluye cada proyecto" },
         items: [
-          { icon: ic("gauge"), title: "No pierdes visitas por lentitud", text: "Tu sitio abre rápido, también con datos móviles. Cada segundo de espera es un cliente que se va, y Google lo nota." },
-          { icon: ic("layout"), title: "Te ves serio en cualquier pantalla", text: "Celular, tablet o computador: tu negocio se ve profesional en la pantalla que use tu cliente." },
-          { icon: ic("search"), title: "Te encuentran en Google", text: "Lo dejamos preparado para que Google entienda qué haces y lo muestre a quien te busca." },
-          { icon: ic("lock"), title: "Sin sustos de seguridad", text: "Conexión segura, respaldos y protección, para que tu sitio y los datos de tus clientes estén a salvo." },
-          { icon: ic("chart"), title: "Pensado para que te escriban", text: "Cada sección lleva al visitante a contactarte, no solo a mirar." },
-          { icon: ic("headset"), title: "Hablas con quien lo hizo", text: "Sin call center ni tickets: escribes por WhatsApp y te responde la misma persona que construyó tu sitio." },
+          { icon: ic("gauge"), title: "Carga rápida", text: "Tu sitio abre rápido también con datos móviles, lo que mejora la experiencia de tus clientes y tu posición en Google." },
+          { icon: ic("layout"), title: "Diseño adaptable", text: "Se ve y funciona correctamente en celular, tablet y computador." },
+          { icon: ic("search"), title: "Optimizado para Google", text: "Estructura, metadatos y rendimiento preparados para que Google indexe y muestre tu sitio." },
+          { icon: ic("lock"), title: "Seguridad y respaldos", text: "Conexión segura (SSL), copias de respaldo y protección de los datos de tus clientes." },
+          { icon: ic("chart"), title: "Orientado a contactos", text: "Formularios y botones de WhatsApp ubicados para facilitar que tus clientes te contacten." },
+          { icon: ic("headset"), title: "Atención directa", text: "Hablas por WhatsApp o correo con la persona que desarrolla tu sitio, sin intermediarios." },
         ],
       },
-      pricing: { heading: "Sin sorpresas, sin letra chica", intro: "Precios en pesos chilenos. Lo que ves es lo que pagas. Cotización personalizada según tu proyecto.", caption: "Precios por servicio y plan", head: ["Servicio", "Básico", "Estándar", "Premium"], from: "Desde", action: { label: "Ver detalle de precios", title: "Ir a la página con el detalle de precios y condiciones" } },
-      faq: { heading: "Resolvemos tus dudas", intro: "Las preguntas que más nos hacen antes de contratar." },
+      pricing: { heading: "Precios por servicio y plan", intro: "Precios en pesos chilenos. Lo que ves es lo que pagas. Cotización personalizada según tu proyecto.", caption: "Precios por servicio y plan", head: ["Servicio", "Básico", "Estándar", "Premium"], from: "Desde", action: { label: "Ver detalle de precios", title: "Ir a la página con el detalle de precios y condiciones" } },
+      faq: { heading: "Preguntas frecuentes", intro: "Las preguntas que más nos hacen antes de contratar." },
     },
     /** Oferta: lo que se mide en cada entrega, las garantias y los cupos del mes. Deben coincidir con los Terminos (seccion 11). */
     offer: {
       results: {
-        heading: "Cómo sabrás que funcionó",
-        intro: "No te pedimos fe: cada entrega se mide y queda por escrito.",
+        heading: "Resultados medibles en cada entrega",
+        intro: "Cada entrega se mide y queda documentada por escrito.",
         report: { title: "Informe de entrega", text: "Al publicar recibes un informe con el puntaje de Google PageSpeed, el tiempo de carga y la accesibilidad de tu sitio, medidos ese día." },
         google: { title: "Google confirmado", text: "Registramos tu sitio en Google Search Console y te mostramos la confirmación de que Google lo indexó." },
         deadline: { title: "Fecha de entrega por escrito", text: "La fecha va en tu cotización y queda cubierta por la garantía de entrega a tiempo." },
@@ -568,7 +568,7 @@ export const es = {
       },
       guarantees: {
         heading: "Nuestras garantías",
-        intro: "Si no cumplimos, pagas menos o no pagas. Así de simple, y queda escrito en los Términos.",
+        intro: "Compromisos por escrito: si no cumplimos, pagas menos o no pagas. Cada garantía está detallada en los Términos y Condiciones.",
         design: { title: "Diseño aprobado o te devolvemos el anticipo", text: "Si después de las rondas de revisión no apruebas el diseño, te devolvemos el 50% que pagaste al inicio y no pagas nada más." },
         time: { title: "Entrega a tiempo o descuento", text: "Si nos atrasamos por causa nuestra, descontamos 5% del precio por cada día hábil de atraso, hasta un 30%." },
         speed: { title: "Velocidad garantizada", text: "Tu sitio obtiene 90 o más en Google PageSpeed para celular, o lo optimizamos sin costo hasta lograrlo." },
@@ -587,8 +587,8 @@ export const es = {
     },
     services: {
       title: "Servicios de páginas web, aplicaciones web y mantención",
-      lead: "Cada servicio resuelve un problema concreto: que te escriban, que te tomen en serio, ordenar tu negocio o tener tu web siempre funcionando. Elige el tuyo y mira los planes con precio cerrado.",
-      tabs: { heading: "Nuestros servicios", intro: "Elige qué quieres resolver y mira de inmediato lo que recibes y cuánto cuesta.", label: "Servicios disponibles", title: (name: string) => `Ver los planes, precios y plazos del servicio ${name}` },
+      lead: "Landing pages, sitios web corporativos, CRM a medida y mantención web. Cada servicio tiene planes con precio cerrado, plazo de entrega y detalle de lo que incluye.",
+      tabs: { heading: "Nuestros servicios", intro: "Elige un servicio para ver lo que incluye, sus planes y precios.", label: "Servicios disponibles", title: (name: string) => `Ver los planes, precios y plazos del servicio ${name}` },
       receive: "Lo que vas a recibir",
       receiveMore: "Ver {n} más",
       receiveLess: "Ver menos",
@@ -683,7 +683,7 @@ export const es = {
     },
     maintenance: {
       title: "Mantención web: tu sitio al día, seguro y en línea",
-      lead: "Un servicio opcional y sin permanencia para que tu sitio siga funcionando, actualizado y respaldado cuando termina el soporte incluido. Pides los cambios por WhatsApp y quedan hechos.",
+      lead: "Servicio opcional y sin permanencia para mantener tu sitio actualizado, respaldado y en línea cuando termina el soporte incluido. Los cambios se solicitan por correo o WhatsApp.",
       covers: { heading: "Qué cubre la mantención", items: ["Cambios de contenido: textos, imágenes y precios", "Dominio renovado y bien apuntado", "Servicios en la nube donde vive tu sitio, al día", "Copias de seguridad y parches de seguridad", "Corrección de fallas y monitoreo de que siga en línea"], note: "No incluye secciones ni funciones nuevas: esas se cotizan aparte." },
       prices: { heading: "Planes y precios", intro: "Precios en pesos chilenos. Puedes pagar por adelantado 3, 6 o 12 meses, o mes a mes.", caption: "Precios de mantención por servicio", head: ["Servicio", "3 meses", "6 meses", "1 año", "Mensual suelto"], quote: "A cotizar", crmNote: "El CRM incluye mantención obligatoria desde la puesta en producción; su valor se define en el levantamiento." },
       how: {
@@ -732,8 +732,8 @@ export const es = {
     },
     pricing: {
       tabs: { heading: "Precios por servicio", intro: "Elige un servicio para ver el precio de cada plan, lo que incluye y su plazo de entrega.", label: "Servicios con precios" },
-      title: "Precios claros, sin letra chica",
-      lead: "Elige tu plan, mira qué incluye y cotiza en minutos. Precios en pesos chilenos, sin letra chica.",
+      title: "Precios de páginas web, landing pages y CRM",
+      lead: "Elige tu plan, mira qué incluye y cotiza en minutos. Precios claros, sin letra chica.",
       hero: {
         primary: { label: "Ver planes y precios", title: "Bajar a los precios de cada servicio y plan" },
         secondary: { label: "Cotizar gratis", title: "Ir al formulario de contacto para cotizar tu proyecto sin compromiso" },
@@ -749,7 +749,7 @@ export const es = {
       },
     },
     about: {
-      title: "Nosotros: una persona real detrás de tu proyecto",
+      title: "Nosotros: desarrollo web con atención directa",
       lead: "Acmora es un estudio de diseño y desarrollo web atendido directamente por José Ignacio Contreras Castro: quien diseña y desarrolla tu proyecto es quien responde tus mensajes.",
       who: { heading: "Con quién vas a hablar", text: "Con José Ignacio Contreras Castro, directamente. No hay ejecutivo de cuenta ni mesa de ayuda entre medio: la misma persona que diseña y desarrolla tu proyecto es la que responde tus mensajes y aplica los cambios después de la entrega." },
       commitments: {
@@ -757,7 +757,7 @@ export const es = {
         items: [
           { term: "Sin contratos largos", desc: "Cotización por proyecto y mantención opcional por mes, que se puede terminar con 15 días de aviso." },
           { term: "Dominio y accesos a tu nombre", desc: "El dominio se registra a tu nombre y te entregamos los accesos y credenciales del hosting y de tus correos. El código fuente se compra aparte cuando quieras y la mantención es opcional: no quedas amarrado a nosotros." },
-          { term: "Todo en línea, en todo Chile", desc: "Trabajamos con clientes de todo Chile y también del extranjero: reuniones por videollamada, entregas en línea y soporte por correo o WhatsApp." },
+          { term: "Todo en línea, desde cualquier país", desc: "Reuniones por videollamada, entregas en línea y soporte por correo o WhatsApp, estés donde estés." },
           { term: "Fechas por escrito", desc: "La fecha de entrega queda por escrito en la cotización." },
           { term: "Sin promesas que no podemos cumplir", desc: "Dejamos el sitio preparado para Google y te mostramos que quedó indexado, pero no prometemos una posición determinada." },
         ],
